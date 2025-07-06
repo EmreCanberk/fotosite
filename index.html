@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo - Anasayfa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <style>
+        /* Portfolyo Kartları için Özel Stiller */
+
+        /* Portfolyo Kartları için Özel Stiller */
+        .file {
+            perspective: 1000px;
+            /* 3D dönüşüm için perspektif */
+            position: relative;
+            width: 300px;
+            /* Kart genişliği */
+            height: 400px;
+            /* Kart yüksekliği */
+            margin: 20px;
+            /* Kartlar arasında boşluk */
+            display: inline-block;
+            /* Kartları yan yana dizmek için */
+        }
+
+        .file .work-5,
+        .file .work-4,
+        .file .work-3,
+        .file .work-2,
+        .file .work-1 {
+            /* Tüm work katmanları için genel geçişler */
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+        }
+
+        /* BURADAKİ TRANSFORM KISIMLARI DEĞİŞTİ */
+        /* Dosya, öne doğru açılıyormuş gibi görünecek */
+        .file .work-4 {
+            transform-origin: bottom;
+            /* Dönüşüm alt kısımdan başlar */
+            transform: rotateX(0deg);
+            /* Başlangıçta düz */
+            transition: transform 0.3s ease;
+        }
+
+        .file:hover .work-4 {
+            transform: rotateX(20deg);
+            /* Hover'da öne doğru 20 derece eğilir */
+        }
+
+        .file .work-3 {
+            transform-origin: bottom;
+            transform: rotateX(0deg);
+            transition: transform 0.3s ease 0.05s;
+            /* Hafif gecikme */
+        }
+
+        .file:hover .work-3 {
+            transform: rotateX(30deg);
+        }
+
+        .file .work-2 {
+            transform-origin: bottom;
+            transform: rotateX(0deg);
+            transition: transform 0.3s ease 0.1s;
+            /* Hafif gecikme */
+        }
+
+        .file:hover .work-2 {
+            transform: rotateX(38deg);
+        }
+
+        .file .work-1 {
+            transform-origin: bottom;
+            transform: rotateX(0deg);
+            transition: transform 0.3s ease 0.15s;
+            /* En son katman, en çok eğilen */
+        }
+
+        .file:hover .work-1 {
+            transform: rotateX(46deg) translateY(-5px);
+            /* Öne doğru daha çok eğilme ve hafif yukarı kalkma */
+            box-shadow: inset 0 20px 40px rgba(251, 191, 36, 0.5), inset 0 -20px 40px rgba(217, 119, 6, 0.5);
+            /* Hafif gölgeler */
+        }
+
+        /* work-1 Katmanı - Özel Arka Plan Görselleri (BURAYI KENDİ GÖRSELLERİNLE DEĞİŞTİRMELİSİN!) */
+
+        /* Düğün Fotoğrafçılığı Kartı */
+        .file a[href="/portfolio/dugun.html"] .work-1 {
+            background-image: url('https://via.placeholder.com/600x400/FFD700/000000?text=Düğün+Fotoğrafçılığı');
+            /* Örnek: Kendi Düğün fotoğrafının yolunu buraya yaz! */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* Mezuniyet Çekimleri Kartı */
+        .file a[href="/portfolio/mezuniyet.html"] .work-1 {
+            background-image: url('https://via.placeholder.com/600x400/4682B4/FFFFFF?text=Mezuniyet+Çekimleri');
+            /* Örnek: Kendi Mezuniyet fotoğrafının yolunu buraya yaz! */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .file a[href="/portfolio/mezuniyet.html"] .work-5 {
+            background-color: #4682B4;
+        }
+
+        /* Koyu Mavi */
+        .file a[href="/portfolio/mezuniyet.html"] .work-1 {
+            background: linear-gradient(to top, #6A8DAB, #4682B4);
+        }
+
+        /* Mavi Gradient */
+        .file a[href="/portfolio/mezuniyet.html"] .work-1::after,
+        .file a[href="/portfolio/mezuniyet.html"] .work-1::before {
+            background-color: #4682B4;
+        }
+
+
+        /* Ürün Fotoğrafçılığı Kartı */
+        .file a[href="/portfolio/urun-fotografciligi.html"] .work-1 {
+            background-image: url('https://via.placeholder.com/600x400/32CD32/FFFFFF?text=Ürün+Fotoğrafçılığı');
+            /* Örnek: Kendi Ürün fotoğrafının yolunu buraya yaz! */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .file a[href="/portfolio/urun-fotografciligi.html"] .work-5 {
+            background-color: #32CD32;
+        }
+
+        /* Koyu Yeşil */
+        .file a[href="/portfolio/urun-fotografciligi.html"] .work-1 {
+            background: linear-gradient(to top, #4CAF50, #32CD32);
+        }
+
+        /* Yeşil Gradient */
+        .file a[href="/portfolio/urun-fotografciligi.html"] .work-1::after,
+        .file a[href="/portfolio/urun-fotografciligi.html"] .work-1::before {
+            background-color: #32CD32;
+        }
+
+
+        /* Etkinlik & Konser Kartı */
+        .file a[href="/portfolio/etkinlik-konser.html"] .work-1 {
+            background-image: url('https://via.placeholder.com/600x400/8A2BE2/FFFFFF?text=Etkinlik+Konser');
+            /* Örnek: Kendi Etkinlik fotoğrafının yolunu buraya yaz! */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .file a[href="/portfolio/etkinlik-konser.html"] .work-5 {
+            background-color: #8A2BE2;
+        }
+
+        /* Mor */
+        .file a[href="/portfolio/etkinlik-konser.html"] .work-1 {
+            background: linear-gradient(to top, #A742F5, #8A2BE2);
+        }
+
+        /* Mor Gradient */
+        .file a[href="/portfolio/etkinlik-konser.html"] .work-1::after,
+        .file a[href="/portfolio/etkinlik-konser.html"] .work-1::before {
+            background-color: #8A2BE2;
+        }
+
+
+        /* Z-index ve Dönüş Noktaları - Bunları değiştirmene gerek yok */
+        .file .work-5 {
+            z-index: 5;
+        }
+
+        .file .work-4 {
+            z-index: 4;
+        }
+
+        .file .work-3 {
+            z-index: 3;
+        }
+
+        .file .work-2 {
+            z-index: 2;
+        }
+
+        .file .work-1 {
+            z-index: 1;
+        }
+
+
+
+        /* Genel Body Stilleri */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding-top: 80px;
+            /* Navbar'ın sabit olması için boşluk bırakıldı */
+            background: linear-gradient(135deg, #372902, #1C140F);
+            /* Derin, sıcak tonlu degrade */
+            color: #f5f5f5;
+            overflow-x: hidden;
+            /* Yatay kaydırmayı engeller */
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* --- Animasyonlu Yıldız Efekti (Turuncu Tonlarında) --- */
+        .stars-container {
+            position: fixed;
+            /* Yıldızları da sabit yapalım ki scroll ile hareket etmesin */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
+            /* İçeriğin ve navbar'ın arkasında kalsın */
+        }
+
+        .star {
+            position: absolute;
+            background-color: #FF8F00;
+            /* Canlı turuncu */
+            box-shadow: 0 0 8px 3px rgba(255, 143, 0, 0.6);
+            border-radius: 50%;
+            opacity: 0;
+            animation: gentleTwinkle 6s infinite ease-in-out;
+            /* Nazik ve uzun animasyon */
+            animation-delay: var(--delay);
+            transform: scale(0);
+        }
+
+        .star-small {
+            width: 2px;
+            height: 2px;
+            background-color: #FFA000;
+            /* Daha açık turuncu */
+            box-shadow: 0 0 4px 1px rgba(255, 160, 0, 0.5);
+        }
+
+        .star-medium {
+            width: 4px;
+            height: 4px;
+            background-color: #FF8F00;
+            /* Ana turuncu */
+            box-shadow: 0 0 6px 2px rgba(255, 143, 0, 0.6);
+        }
+
+        .star-large {
+            width: 6px;
+            height: 6px;
+            background-color: #F57C00;
+            /* Daha koyu, sıcak turuncu */
+            box-shadow: 0 0 8px 3px rgba(245, 124, 0, 0.7);
+        }
+
+        @keyframes gentleTwinkle {
+            0% {
+                opacity: 0;
+                transform: scale(0.2);
+            }
+
+            20% {
+                opacity: 0.9;
+                transform: scale(1);
+            }
+
+            40% {
+                opacity: 0.7;
+                transform: scale(0.9);
+            }
+
+            60% {
+                opacity: 0.9;
+                transform: scale(1.1);
+            }
+
+            80% {
+                opacity: 0.5;
+                transform: scale(0.7);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(0.2);
+            }
+        }
+
+        /* --- Navbar Özel Stilleri (Turuncu Temalı) --- */
+        .bg-gray-900\/70 {
+            background-color: rgba(26, 18, 11, 0.7);
+            /* Koyu, sıcak tonlu şeffaf */
+        }
+
+        .border-orange-500\/30 {
+            border-color: rgba(255, 160, 0, 0.3);
+            /* Turuncu tonlu kenar */
+        }
+
+        .from-orange-600 {
+            --tw-gradient-from: #FF8F00 var(--tw-gradient-from-position);
+        }
+
+        .to-orange-400 {
+            --tw-gradient-to: #FFA000 var(--tw-gradient-to-position);
+        }
+
+        .border-orange-400\/30 {
+            border-color: rgba(255, 143, 0, 0.3);
+        }
+
+        .shadow-orange-800\/20 {
+            box-shadow: 0 4px 6px -1px rgba(255, 143, 0, 0.2), 0 2px 4px -1px rgba(255, 143, 0, 0.1);
+        }
+
+        .from-orange-900\/20 {
+            --tw-gradient-from: rgba(255, 143, 0, 0.2) var(--tw-gradient-from-position);
+        }
+
+        .to-orange-700\/20 {
+            --tw-gradient-to: rgba(230, 81, 0, 0.2) var(--tw-gradient-to-position);
+        }
+
+        .from-yellow-400 {
+            --tw-gradient-from: #FFD54F var(--tw-gradient-from-position);
+        }
+
+        .to-orange-400 {
+            --tw-gradient-to: #FFB300 var(--tw-gradient-to-position);
+        }
+
+        .via-orange-400 {
+            --tw-gradient-via: #FFC107 var(--tw-gradient-via-position);
+        }
+
+        .to-orange-600 {
+            --tw-gradient-to: #FF8F00 var(--tw-gradient-to-position);
+        }
+
+        /* Masaüstü linkler için aktif durum ve hover efektleri */
+        .nav-link {
+            color: #e0e0e0;
+            padding: 8px 16px;
+            /* Buton gibi durması için padding eklendi */
+            border-radius: 0.375rem;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .nav-link:hover {
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-link.active {
+            color: #FFD54F;
+            position: relative;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 100%;
+            height: 2px;
+            background-color: #FFD54F;
+            border-radius: 1px;
+            transition: width 0.3s ease-in-out;
+        }
+
+        /* Contact Button renkleri */
+        .contact-btn {
+            background: linear-gradient(to right, rgba(245, 124, 0, 0.9), rgba(230, 81, 0, 0.9));
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .contact-btn:hover {
+            background: linear-gradient(to right, rgba(255, 143, 0, 0.9), rgba(255, 111, 0, 0.9));
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .contact-btn span {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        /* Mobile menu button icon animasyonu */
+        #mobile-menu-button span {
+            background-color: #FFB300;
+        }
+
+        #mobile-menu-button.active #line1 {
+            transform: translateY(6px) rotate(45deg);
+        }
+
+        #mobile-menu-button.active #line2 {
+            opacity: 0;
+        }
+
+        #mobile-menu-button.active #line3 {
+            transform: translateY(-6px) rotate(-45deg);
+        }
+
+        /* Mobil menü linkleri */
+        .mobile-nav-link {
+            color: #e0e0e0;
+            display: block;
+            padding: 8px 16px;
+            border-radius: 0.375rem;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .mobile-nav-link:hover {
+            color: #FFB300;
+            background-color: rgba(45, 30, 18, 0.5);
+        }
+
+        /* Mobil menüdeki Connect butonu */
+        .mobile-menu .contact-btn {
+            background: linear-gradient(to right, #F57C00, #E65100);
+        }
+
+        .mobile-menu .contact-btn:hover {
+            background: linear-gradient(to right, #FF8F00, #FF7043);
+        }
+
+        /* --- Bölüm Stilleri (Turuncu Vurgular) --- */
+        .section {
+            padding: 80px 20px;
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Anasayfaya özel stil */
+        #home {
+            background-color: rgba(0, 0, 0, 0.2);
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            /* Kenar boşlukları */
+            min-height: calc(100vh - 80px);
+            /* Navbar yüksekliği kadar çıkarıldı */
+            position: relative;
+            /* İçindeki logoyu konumlandırmak için */
+        }
+
+        #home .home-content {
+            max-width: 800px;
+            /* Metin için maksimum genişlik */
+            text-align: center;
+            margin-bottom: 20px;
+            /* Logo ile arasına biraz boşluk */
+        }
+
+        #home .home-content h2 {
+            font-size: 2.8em;
+            /* Daha dengeli başlık boyutu */
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        #home .home-content p {
+            font-size: 1.3em;
+            /* Daha dengeli paragraf boyutu */
+            line-height: 1.8;
+            margin-bottom: 25px;
+            color: #e0e0e0;
+        }
+
+        #home a.inline-block {
+            /* Anasayfa butonu */
+            background: linear-gradient(to right, #FF8F00, #F57C00);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        #home a.inline-block:hover {
+            background: linear-gradient(to right, #FFA000, #FF8F00);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+        }
+
+
+        /* --- Animasyonlu Logo Kutusu Stilleri (Şimdi Anasayfada Sağ Altta) --- */
+        .animated-logo-container {
+            --itemWidth: min(150px, 20vw);
+            /* Daha küçük logo boyutu, mobil uyumlu */
+            --itemWidthMinus: calc(-1 * var(--itemWidth));
+            height: max-content;
+            width: max-content;
+            position: absolute;
+            /* Anasayfa içine göre konumlandır */
+            bottom: 20px;
+            /* Alttan boşluk */
+            right: 30px;
+            /* Sağdan boşluk */
+            z-index: 10;
+            /* Diğer içeriklerin üstünde kalsın */
+        }
+
+        .animated-logo-item {
+            box-shadow:
+                inset var(--itemWidthMinus) var(--itemWidthMinus) 0 #FF8F00,
+                /* Koyu Turuncu */
+                inset var(--itemWidth) var(--itemWidthMinus) 0 #F57C00,
+                /* Daha Koyu Turuncu */
+                inset var(--itemWidthMinus) var(--itemWidth) 0 #FFC107,
+                /* Açık Turuncu/Sarı */
+                inset var(--itemWidth) var(--itemWidth) 0 #FFD54F,
+                /* Sarımsı Turuncu */
+                0 0 10px rgba(255, 160, 0, 0.6);
+            /* Daha az belirgin turuncu gölge */
+            transition: box-shadow ease-in-out .6s, color ease-in-out .5s;
+            width: var(--itemWidth);
+            height: var(--itemWidth);
+            border-radius: 50%;
+            text-align: center;
+            background: center/50% no-repeat;
+            cursor: pointer;
+            display: grid;
+            color: white;
+            font-size: calc(var(--itemWidth) / 6);
+            /* Yazı boyutu da küçültülen logoya göre ayarlandı */
+            grid-row: 1 / 2;
+            grid-column: 1 / 2;
+            place-self: center;
+            background-image: url('https://via.placeholder.com/100/FFD54F/000000?text=P');
+            /* Photo'nun P logosu - KENDİ LOGO URL'NİZİ BURAYA KOYUN */
+            background-size: 60%;
+            /* Logo ikonu biraz daha büyük */
+            background-repeat: no-repeat;
+            background-position: center;
+            border: 1px solid #FFD54F;
+            /* Daha ince kenarlık */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .animated-logo-item:hover {
+            box-shadow:
+                inset 0 0 0 transparent,
+                inset 0 0 0 transparent,
+                inset 0 0 0 transparent,
+                inset 0 0 0 transparent,
+                0 0 10px rgba(255, 213, 79, 0.8);
+            /* Hoverda daha parlak ama hala zarif turuncu gölge */
+            color: transparent;
+        }
+
+        .animated-logo-item>span {
+            width: 80%;
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+            /* Daha az belirgin metin gölgesi */
+            color: #FFD54F;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            /* Daha az harf aralığı */
+        }
+
+
+        /* Hakkımızda bölümü için metin rotator stili */
+        #about,
+        #references,
+        #portfolio,
+        #contact {
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .section h2 {
+            font-size: 2.8em;
+            /* Genel başlık boyutu */
+            color: #FFD54F;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        .section p {
+            font-size: 1.2em;
+            /* Genel paragraf boyutu */
+            line-height: 1.7;
+            max-width: 800px;
+            color: #e0e0e0;
+        }
+
+        #about .animated-text-rotator {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            vertical-align: middle;
+            border-right: 1px solid #FFD54F;
+            /* Cursor efekti daha ince */
+            animation: blink-caret .75s step-end infinite;
+            /* Sadece cursor animasyonu */
+            font-size: 1.6em;
+            /* Hakkımızda için daha dengeli metin boyutu */
+            font-weight: bold;
+            color: #FFD54F;
+            min-height: 1.6em;
+            /* Yüksekliği koru */
+            margin-top: 15px;
+            /* Metinle üstteki paragraf arasına boşluk */
+        }
+
+        /* Yazı ve silme animasyonu için görünmezlik */
+        #about .animated-text-rotator.typing {
+            animation: typing 3.5s steps(20, end) forwards, blink-caret .75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink-caret {
+
+            from,
+            to {
+                border-color: transparent;
+            }
+
+            50% {
+                border-color: #FFD54F;
+            }
+        }
+
+
+        /* Footer Stilleri */
+        .footer {
+            padding: 20px 20px;
+            background-color: rgba(26, 18, 11, 0.8);
+            text-align: center;
+            color: #ccc;
+            font-size: 0.8em;
+            z-index: 1;
+            position: relative;
+        }
+
+        /* --- Sosyal Medya İkonları Özel Stilleri --- */
+        .social-icons-list {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            list-style: none;
+            margin-top: 20px;
+            /* Daha az boşluk */
+        }
+
+        .social-icons-list li {
+            margin: 0 8px;
+        }
+
+        /* Daha az boşluk */
+
+        .social-icons-list li a {
+            width: 45px;
+            /* Daha küçük ikon boyutu */
+            height: 45px;
+            background-color: #fff;
+            text-align: center;
+            line-height: 45px;
+            font-size: 20px;
+            /* Daha küçük ikon fontu */
+            display: block;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #FF8F00;
+            /* Daha ince kenarlık */
+            z-index: 1;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .social-icons-list li a:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Daha az kalkma */
+
+        .social-icons-list li a .icon {
+            position: relative;
+            color: #262626;
+            transition: .5s;
+            z-index: 3;
+        }
+
+        .social-icons-list li a:hover .icon {
+            color: #fff;
+            transform: rotateY(360deg);
+        }
+
+        .social-icons-list li a:before {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transition: .5s;
+            z-index: 2;
+        }
+
+        .social-icons-list li a:hover:before {
+            top: 0;
+        }
+
+        /* Sosyal Medya İkonları Hover Renkleri (Turuncu Tonlarında) */
+        .social-icons-list li:nth-child(1) a:before {
+            background: #F97316;
+        }
+
+        .social-icons-list li:nth-child(2) a:before {
+            background: #FBBF24;
+        }
+
+        .social-icons-list li:nth-child(3) a:before {
+            background: #F59E0B;
+        }
+
+        .social-icons-list li:nth-child(4) a:before {
+            background: #EA580C;
+        }
+
+
+        /* Responsive ayarlar */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 60px;
+                /* Mobil navbar yüksekliği */
+            }
+
+            #home {
+                padding-top: 60px;
+                /* Mobil navbar yüksekliği */
+                min-height: calc(100vh - 60px);
+                flex-direction: column;
+                /* Mobil cihazlarda alt alta */
+                text-align: center;
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            #home .home-content {
+                text-align: center;
+                margin-right: 0;
+                /* Mobil için boşluğu kaldır */
+                margin-bottom: 20px;
+                /* Logo ile arasına boşluk */
+            }
+
+            #home .home-content h2 {
+                font-size: 2.2em;
+                /* Mobil için daha küçük başlık */
+            }
+
+            #home .home-content p {
+                font-size: 1em;
+                /* Mobil için daha küçük paragraf */
+            }
+
+            .animated-logo-container {
+                --itemWidth: 100px;
+                /* Mobil için daha da küçük logo boyutu */
+                bottom: 15px;
+                right: 15px;
+            }
+
+            .animated-logo-item {
+                font-size: calc(var(--itemWidth) / 5);
+            }
+
+            /* Mobil logo yazı boyutu */
+            #about h2,
+            #references h2,
+            #portfolio h2,
+            #contact h2 {
+                font-size: 2.2em;
+                /* Mobil için başlık boyutu */
+            }
+
+            #about p,
+            #references p,
+            #portfolio p,
+            #contact p {
+                font-size: 1em;
+                /* Mobil için paragraf boyutu */
+            }
+
+            #about .animated-text-rotator {
+                font-size: 1.3em;
+                /* Mobil için hakkımızda metni */
+                min-height: 1.3em;
+            }
+
+            .social-icons-list li a {
+                width: 40px;
+                /* Mobil için daha küçük ikon boyutu */
+                height: 40px;
+                line-height: 40px;
+                font-size: 18px;
+                /* Mobil için daha küçük ikon fontu */
+            }
+
+            .section {
+                padding-top: 4rem;
+                /* py-16 yerine */
+                padding-bottom: 4rem;
+                /* py-16 yerine */
+            }
+
+            /* Card Container for Grid */
+            .grid {
+                display: grid;
+                gap: 2rem;
+                /* gap-8 yerine */
+                max-width: 96rem;
+                /* max-w-6xl yerine, daha geniş olabilir */
+                width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+                justify-items: center;
+                /* Kartları ortala */
+                /* Tailwind responsive classes already handle sm:grid-cols-2 lg:grid-cols-4 */
+            }
+
+            /* Base Card Styles */
+            .card {
+                position: relative;
+                width: 220px;
+                /* Kart genişliği */
+                height: 320px;
+                /* Kart yüksekliği */
+                background-color: #333;
+                /* Eğer görsel yüklenmezse görünen varsayılan renk */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 25px;
+                font-weight: bold;
+                border-radius: 15px;
+                cursor: pointer;
+                overflow: hidden;
+                /* Kenar taşmalarını gizle */
+                text-decoration: none;
+                /* Link alt çizgisini kaldır */
+                color: #fff;
+                /* Yazı rengi */
+                transition: all 0.5s ease;
+                /* Tüm geçişler için */
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+                /* Hafif gölge */
+                background-size: cover;
+                /* Görseli kartı kaplayacak şekilde boyutlandır */
+                background-position: center;
+                /* Görseli ortaya hizala */
+                background-repeat: no-repeat;
+                /* Görselin tekrar etmesini engelle */
+                transform: scale(1);
+                /* Başlangıçta normal boyut */
+            }
+
+            /* Hover Effect for Card Scale */
+            .card:hover {
+                transform: scale(1.05);
+                /* Hover'da hafifçe büyüt */
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+                /* Daha belirgin gölge */
+            }
+
+
+
+
+            .card[data-card-type="dugun"] {
+                background-image: url('/assets/img/portfolio/images.jpg');
+                ;
+                /* Düğün fotoğrafı */
+            }
+
+            .card[data-card-type="mezuniyet"] {
+                background-image: url('/assets/img/portfolio/images.jpg');
+                /* Mezuniyet fotoğrafı */
+            }
+
+            .card[data-card-type="urun"] {
+                background-image: url('/assets/img/portfolio/images.jpg');
+            }
+
+            .card[data-card-type="etkinlik"] {
+                background-image: url('/assets/img/portfolio/images.jpg');
+                /* Etkinlik fotoğrafı */
+            }
+
+
+
+
+            .card::before,
+            .card::after {
+                position: absolute;
+                content: "";
+                width: 0;
+                /* Başlangıçta gizli */
+                height: 0;
+                /* Başlangıçta gizli */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 25px;
+                font-weight: bold;
+                background-color: rgba(0, 0, 0, 0.4);
+                /* Yarı şeffaf overlay */
+                transition: all 0.5s ease;
+                z-index: 1;
+                /* Metnin arkasında kalması için */
+                border-radius: 15px;
+                /* Kartın yuvarlak kenarlarını takip et */
+                opacity: 0;
+                /* Başlangıçta şeffaf */
+            }
+
+            /* Hover durumunda ::before ve ::after genişler ve opaklaşır */
+            .card:hover::before,
+            .card:hover::after {
+                width: 100%;
+                height: 100%;
+                opacity: 1;
+            }
+
+            .card:hover::after {
+                /* content dinamik olarak aşağıdaki blocklarda belirlenecek */
+                font-size: 30px;
+                color: #fff;
+                text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+                content: attr(data-hover-text);
+                /* HTML'deki data-hover-text'i kullan */
+            }
+
+            /* Metin kutusu (Başlangıçta görünen metin) */
+            .card-text {
+                position: relative;
+                z-index: 2;
+                /* Kartın üzerindeki metin önde olsun */
+                font-size: 20px;
+                /* Varsayılan metin boyutu */
+                padding: 15px;
+                text-align: center;
+                background-color: rgba(0, 0, 0, 0.6);
+                /* Metin arkası yarı şeffaf bant */
+                border-radius: 5px;
+                opacity: 1;
+                /* Başlangıçta görünür */
+                transition: opacity 0.3s ease;
+                max-width: 90%;
+                /* Metnin kart içinde kalmasını sağla */
+            }
+
+            /* Hover'da varsayılan metni gizle */
+            .card:hover .card-text {
+                opacity: 0;
+            }
+
+            /* Her kart için özel hover metni (::after content'i için) */
+            .card[data-card-type="dugun"]::after {
+                content: "Düğün Detayları";
+            }
+
+            .card[data-card-type="mezuniyet"]::after {
+                content: "Mezuniyet Detayları";
+            }
+
+            .card[data-card-type="urun"]::after {
+                content: "Ürün Detayları";
+            }
+
+            .card[data-card-type="etkinlik"]::after {
+                content: "Etkinlikler Detayları";
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="stars-container" id="starsContainer"></div>
+
+    <nav id="navbar"
+        class="fixed top-0 left-0 right-0 bg-gray-900/70 backdrop-blur-lg border-b border-orange-500/30 z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <div class="relative mr-2">
+                        <div class="absolute inset-0 bg-orange-400/30 rounded-md blur-sm"></div>
+                        <div
+                            class="w-8 h-8 rounded-md bg-gradient-to-br from-orange-600 to-orange-400 border border-orange-400/30 flex items-center justify-center relative shadow-lg shadow-orange-800/20">
+                            <div
+                                class="absolute inset-[2px] bg-gray-900 rounded-[3px] flex items-center justify-center overflow-hidden">
+                                <div
+                                    class="font-bold text-sm bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+                                    P</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="text-lg font-medium bg-gradient-to-r from-yellow-400 via-orange-400 to-orange-600 bg-clip-text text-transparent flex items-center">
+                        Photo
+                    </div>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-1">
+                    <a href="#home" class="nav-link">Anasayfa</a>
+                    <a href="#about" class="nav-link">Hakkımızda</a>
+                    <a href="#references" class="nav-link">Referanslar</a>
+                    <a href="#portfolio" class="nav-link">Portfolyo</a>
+                    <a href="#contact" class="nav-link">İletişim</a>
+                    <div class="relative ml-4 group">
+                        <div
+                            class="absolute -inset-0.5 bg-gradient-to-r from-orange-600/50 to-orange-400/50 rounded-lg blur opacity-75 group-hover:opacity-100 transition-all duration-500">
+                        </div>
+                        <button
+                            class="contact-btn px-4 py-2 text-sm font-medium relative z-10 flex items-center justify-center gap-2 group-hover:from-orange-800/90 group-hover:to-orange-600/90 transition-all duration-300">
+                            <span
+                                class="bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">İletişime
+                                Geç</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex md:hidden">
+                    <button id="mobile-menu-button" class="relative w-8 h-8 focus:outline-none group"
+                        aria-label="Menüyü Aç/Kapat">
+                        <div class="absolute w-4 transform -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
+                            <span
+                                class="block h-0.5 w-4 bg-orange-400 mb-1 transform transition duration-300 ease-in-out"
+                                id="line1"></span>
+                            <span
+                                class="block h-0.5 w-4 bg-orange-400 mb-1 transform transition duration-300 ease-in-out"
+                                id="line2"></span>
+                            <span class="block h-0.5 w-4 bg-orange-400 transform transition duration-300 ease-in-out"
+                                id="line3"></span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <div id="mobile-menu" class="md:hidden h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                <div class="pt-2 pb-4 space-y-1">
+                    <a href="#home" class="mobile-nav-link">Anasayfa</a>
+                    <a href="#about" class="mobile-nav-link">Hakkımızda</a>
+                    <a href="#references" class="mobile-nav-link">Referanslar</a>
+                    <a href="#portfolio" class="mobile-nav-link">Portfolyo</a>
+                    <a href="#contact" class="mobile-nav-link">İletişim</a>
+                    <div class="px-4 pt-2">
+                        <button
+                            class="contact-btn w-full px-4 py-2 text-sm font-medium flex items-center justify-center gap-2 hover:from-orange-600 hover:to-orange-400 transition-all duration-300">
+                            <span
+                                class="bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">İletişime
+                                Geç</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="section">
+        <div class="home-content">
+            <h2 class="text-white">Anılarınızı Işıkla Yazıyoruz</h2>
+            <p class="mb-8">Photo olarak, her bir karede duyguyu, hikayeyi ve anı yakalamaya tutkuyla bağlı bir ekibiz.
+                Profesyonel fotoğrafçılık hizmetlerimizle özel anlarınızı ölümsüzleştiriyor, markanızın görsel dünyasını
+                güçlendiriyor ve yaratıcılığımızı her projeye taşıyoruz.</p>
+            <a href="#portfolio"
+                class="inline-block px-8 py-3 text-white font-semibold rounded-md shadow-md hover:from-orange-600 hover:to-orange-700 transition-all duration-300">Çalışmalarımızı
+                Keşfedin</a>
+        </div>
+
+        <div class="animated-logo-container">
+            <div class="animated-logo-item">
+                <span>Photo</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <h2 class="text-white">Hikayemiz ve Değerlerimiz</h2>
+        <p class="mb-8">Photo, yıllar süren deneyim ve sanata olan derin bir sevgiyle kuruldu. Amacımız, sadece fotoğraf
+            çekmek değil, aynı zamanda her bir müşterimizin vizyonunu anlamak ve bunu etkileyici görsellere
+            dönüştürmektir. Dürüstlük, yaratıcılık, müşteri memnuniyeti ve profesyonellik değerlerimizle hareket ediyor,
+            her projede en yüksek kaliteyi sunmayı hedefliyoruz. Ekibimiz, farklı fotoğrafçılık alanlarında uzmanlaşmış
+            yetenekli profesyonellerden oluşmaktadır. Sürekli öğrenmeye ve kendimizi geliştirmeye inanıyoruz, bu sayede
+            en son teknikleri ve trendleri takip ederek özgün işler ortaya koyuyoruz. Her detayı özenle ele alıyor,
+            ışığı ve kompozisyonu ustalıkla kullanarak estetik ve anlam dolu kareler yakalıyoruz.</p>
+
+        <p class="mt-4 text-white text-lg max-w-4xl">Biz Photo olarak sizlere: <span class="animated-text-rotator"
+                id="about-text-rotator"></span> sunuyoruz.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mt-10">
+            <div class="bg-gray-700/50 border border-orange-400/30 rounded-lg p-6 shadow-lg text-left">
+                <h3 class="text-xl font-semibold text-orange-200 mb-3">Misyonumuz</h3>
+                <p class="text-gray-300">Müşterilerimizin anılarını ve vizyonlarını, sanatsal bir bakış açısıyla
+                    ölümsüzleştirerek onlara eşsiz ve kalıcı görsel hikayeler sunmaktır.</p>
+            </div>
+            <div class="bg-gray-700/50 border border-orange-400/30 rounded-lg p-6 shadow-lg text-left">
+                <h3 class="text-xl font-semibold text-orange-200 mb-3">Vizyonumuz</h3>
+                <p class="text-gray-300">Fotoğrafçılık sektöründe yenilikçi yaklaşımlar ve üstün kaliteyle lider konuma
+                    gelerek, her çekimde mükemmeli hedeflemektir.</p>
+            </div>
+        </div>
+        <ul class="list-disc list-inside text-gray-300 mt-6 max-w-xl text-left">
+            <li class="mb-2"><strong class="text-orange-300">Müşteri Odaklılık:</strong> Her projede müşteri
+                memnuniyetini en üstte tutarız.</li>
+            <li class="mb-2"><strong class="text-orange-300">Kalite:</strong> En iyi ekipman ve tekniklerle en yüksek
+                kalitede görseller sunarız.</li>
+            <li class="mb-2"><strong class="text-orange-300">Yaratıcılık:</strong> Sıradışı ve özgün fikirlerle her
+                kareye sanatsal bir dokunuş katarız.</li>
+            <li class="mb-2"><strong class="text-orange-300">Güvenilirlik:</strong> Söz verdiğimiz zamanda ve kalitede
+                teslimat yaparız.</li>
+            <li><strong class="text-orange-300">Profesyonellik:</strong> Tüm süreçlerimizde şeffaf ve etik değerlere
+                bağlıyız.</li>
+        </ul>
+    </section>
+
+    <section id="references" class="section">
+        <h2 class="text-white">Referanslarımız</h2>
+        <p class="mb-8">Photo olarak, çeşitli sektörlerden ve bireysel projelerden oluşan geniş bir referans ağına
+            sahibiz. Her bir referansımız, bize duyulan güvenin ve sunduğumuz hizmet kalitesinin bir göstergesidir.
+            Kurumsal etkinliklerden özel düğünlere, moda çekimlerinden ürün lansmanlarına kadar pek çok alanda başarılı
+            işlere imza attık. Müşterilerimizin memnuniyeti bizim için her şeyden önemli. İşte daha önce çalıştığımız
+            bazı markalar ve projelerden kısa kesitler:</p>
+        <div class="w-full max-w-5xl p-8 bg-gray-800/60 rounded-lg mt-10">
+            <h3 class="text-2xl font-semibold text-orange-300 mb-6 text-center">Seçilmiş Referanslarımız</h3>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div
+                    class="bg-gray-700/50 border border-orange-400/30 rounded-md p-4 flex flex-col items-center justify-center text-center group">
+                    <img src="https://yellowriverwildlifesanctuary.com/wp-content/uploads/2023/12/Aroura_bio.png"
+                        alt="Marka A"
+                        class="w-16 h-16 rounded-full mb-2 group-hover:scale-110 transition-transform duration-300">
+                    <h4 class="text-lg font-semibold text-orange-200 mb-1">Modern Giyim</h4>
+                    <p class="text-gray-400 text-sm">E-ticaret Ürün Çekimleri</p>
+                </div>
+                <div
+                    class="bg-gray-700/50 border border-orange-400/30 rounded-md p-4 flex flex-col items-center justify-center text-center group">
+                    <img src="https://yellowriverwildlifesanctuary.com/wp-content/uploads/2023/12/Aroura_bio.png"
+                        alt="Kafe B"
+                        class="w-16 h-16 rounded-full mb-2 group-hover:scale-110 transition-transform duration-300">
+                    <h4 class="text-lg font-semibold text-orange-200 mb-1">Şehrin Kalbi Kafe</h4>
+                    <p class="text-gray-400 text-sm">Mekan ve Lezzet Fotoğrafları</p>
+                </div>
+                <div
+                    class="bg-gray-700/50 border border-orange-400/30 rounded-md p-4 flex flex-col items-center justify-center text-center group">
+                    <img src="https://yellowriverwildlifesanctuary.com/wp-content/uploads/2023/12/Aroura_bio.png"
+                        alt="Düğün C"
+                        class="w-16 h-16 rounded-full mb-2 group-hover:scale-110 transition-transform duration-300">
+                    <h4 class="text-lg font-semibold text-orange-200 mb-1">Evli Çiftler</h4>
+                    <p class="text-gray-400 text-sm">Düğün Hikayesi Çekimi</p>
+                </div>
+                <div
+                    class="bg-gray-700/50 border border-orange-400/30 rounded-md p-4 flex flex-col items-center justify-center text-center group">
+                    <img src="https://yellowriverwildlifesanctuary.com/wp-content/uploads/2023/12/Aroura_bio.png"
+                        alt="Yazılım D"
+                        class="w-16 h-16 rounded-full mb-2 group-hover:scale-110 transition-transform duration-300">
+                    <h4 class="text-lg font-semibold text-orange-200 mb-1">Yenilikçi Yazılım</h4>
+                    <p class="text-gray-400 text-sm">Kurumsal Portreler</p>
+                </div>
+                <div
+                    class="bg-gray-700/50 border border-orange-400/30 rounded-md p-4 flex flex-col items-center justify-center text-center group">
+                    <img src="https://yellowriverwildlifesanctuary.com/wp-content/uploads/2023/12/Aroura_bio.png"
+                        alt="Otel E"
+                        class="w-16 h-16 rounded-full mb-2 group-hover:scale-110 transition-transform duration-300">
+                    <h4 class="text-lg font-semibold text-orange-200 mb-1">Lüks Resort</h4>
+                    <p class="text-gray-400 text-sm">Mekan Fotoğrafçılığı</p>
+                </div>
+                <div
+                    class="bg-gray-700/50 border border-orange-400/30 rounded-md p-4 flex flex-col items-center justify-center text-center group">
+                    <img src="https://yellowriverwildlifesanctuary.com/wp-content/uploads/2023/12/Aroura_bio.png"
+                        alt="Dergi F"
+                        class="w-16 h-16 rounded-full mb-2 group-hover:scale-110 transition-transform duration-300">
+                    <h4 class="text-lg font-semibold text-orange-200 mb-1">Yaşam Dergisi</h4>
+                    <p class="text-gray-400 text-sm">Kapak ve İç Mekan Çekimleri</p>
+                </div>
+            </div>
+            <p class="text-gray-400 mt-8 italic text-lg">Yakında, bu alanda her bir referansın detaylarını ve
+                görsellerini içeren, animasyonlu ve tıklanabilir bir **galeri** bulacaksınız!</p>
+        </div>
+    </section>
+
+
+    <section id="portfolio" class="section py-16">
+        <h2 class="text-white text-4xl font-bold mb-6 text-center">Seçme Çalışmalarımız</h2>
+        <p class="mb-12 text-lg text-gray-300 text-center max-w-3xl mx-auto">
+            Photo olarak, her anı bir sanat eserine dönüştürüyoruz. Aşağıda, en özel anlarınızı ölümsüzleştirdiğimiz ve
+            markalarınıza değer kattığımız seçme projelerimizi bulabilirsiniz. Her bir kart, farklı bir uzmanlık
+            alanımızı temsil ediyor; detaylarını keşfetmek için kartlara tıklayın!
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl w-full mx-auto justify-items-center">
+
+            <div class="relative group flex flex-col items-center justify-center w-full h-full">
+                <a href="/portfolio/dugun.html" class="card">
+                    <img src="./assets/img/portfolio/images.jpg" alt="Düğün Fotoğrafçılığı" class="card-image">
+                    <span class="card-text">Düğün Fotoğrafçılığı</span>
+                    <div class="card-hover-overlay">Düğün Detayları</div>
+                </a>
+            </div>
+
+            <div class="relative group flex flex-col items-center justify-center w-full h-full">
+                <a href="/portfolio/mezuniyet.html" class="card">
+                    <img src="./assets/img/portfolio/images.jpg" alt="Mezuniyet Çekimleri" class="card-image">
+                    <span class="card-text">Mezuniyet Çekimleri</span>
+                    <div class="card-hover-overlay">Mezuniyet Detayları</div>
+                </a>
+            </div>
+
+            <div class="relative group flex flex-col items-center justify-center w-full h-full">
+                <a href="/portfolio/urun-fotografciligi.html" class="card">
+                    <img src="./assets/img/portfolio/images.jpg" alt="Ürün Fotoğrafçılığı" class="card-image">
+                    <span class="card-text">Ürün Fotoğrafçılığı</span>
+                    <div class="card-hover-overlay">Ürün Detayları</div>
+                </a>
+            </div>
+
+            <div class="relative group flex flex-col items-center justify-center w-full h-full">
+                <a href="/portfolio/etkinlik-konser.html" class="card">
+                    <img src="./assets/img/portfolio/images.jpg" alt="Etkinlik & Konser Çekimleri" class="card-image">
+                    <span class="card-text">Etkinlik & Konser</span>
+                    <div class="card-hover-overlay">Etkinlikler Detayları</div>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <h2 class="text-white">Hayallerinizdeki Kareye Ulaşın</h2>
+        <p class="mb-8">Fotoğrafçılık projeleriniz için profesyonel destek mi arıyorsunuz? Photo olarak, sizin için en
+            uygun çözümü sunmaya hazırız. İster bir düğün çekimi, ister kurumsal bir etkinlik, isterse ürünleriniz için
+            çarpıcı görseller olsun, her türlü ihtiyacınızda yanınızdayız. Aşağıdaki formu doldurarak bize ulaşabilir,
+            konumumuzu haritada görebilir ve sosyal medya hesaplarımızdan bizi takip edebilirsiniz. Ekibimiz, en kısa
+            sürede size geri dönüş yapacak ve projenizi konuşmak için sabırsızlanacaktır. Haydi, hikayenizi ışıkla
+            yazmaya başlayalım!</p>
+
+        <div class="mt-10 max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+            <div class="bg-gray-800/60 p-8 rounded-lg shadow-xl border border-orange-400/30">
+                <h3 class="text-2xl font-semibold text-orange-300 mb-6 text-center">Bize Yazın</h3>
+                <form class="space-y-4">
+                    <div>
+                        <label for="name" class="block text-gray-300 text-sm font-medium text-left mb-1">Adınız
+                            Soyadınız</label>
+                        <input type="text" id="name"
+                            class="mt-1 w-full bg-gray-700/50 border border-gray-600 rounded-md py-2 px-3 text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200"
+                            placeholder="Tam adınızı girin" required>
+                    </div>
+                    <div>
+                        <label for="email" class="block text-gray-300 text-sm font-medium text-left mb-1">E-posta
+                            Adresiniz</label>
+                        <input type="email" id="email"
+                            class="mt-1 w-full bg-gray-700/50 border border-gray-600 rounded-md py-2 px-3 text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200"
+                            placeholder="iletisim@email.com" required>
+                    </div>
+                    <div>
+                        <label for="subject" class="block text-gray-300 text-sm font-medium text-left mb-1">Konu</label>
+                        <input type="text" id="subject"
+                            class="mt-1 w-full bg-gray-700/50 border border-gray-600 rounded-md py-2 px-3 text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200"
+                            placeholder="Proje teklifi, işbirliği vb." required>
+                    </div>
+                    <div>
+                        <label for="message"
+                            class="block text-gray-300 text-sm font-medium text-left mb-1">Mesajınız</label>
+                        <textarea id="message" rows="5"
+                            class="mt-1 w-full bg-gray-700/50 border border-gray-600 rounded-md py-2 px-3 text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 resize-y"
+                            placeholder="Projenizdan veya sorunuzdan bahsedin..." required></textarea>
+                    </div>
+                    <button type="submit"
+                        class="w-full px-4 py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold rounded-md shadow-md hover:from-orange-600 hover:to-orange-700 transition-all duration-300 text-lg">Mesajı
+                        Gönder</button>
+                </form>
+            </div>
+
+            <div class="flex flex-col gap-8">
+                <div class="bg-gray-800/60 p-8 rounded-lg shadow-xl border border-orange-400/30 h-96">
+                    <h3 class="text-2xl font-semibold text-orange-300 mb-6 text-center">Konumumuz</h3>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d198599.988137279!2d35.34005161048689!3d38.72979269550926!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x152b118b62a690e5%3A0x7d06e23b20757a3e!2sKayseri%20Merkez%2FKayseri!5e0!3m2!1str!2str!4v1701300000000!5m2!1str!2str"
+                        width="100%" height="100%" style="border:0; border-radius: 0.5rem;" allowfullscreen=""
+                        loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+
+                <div class="bg-gray-800/60 p-8 rounded-lg shadow-xl border border-orange-400/30">
+                    <h3 class="text-2xl font-semibold text-orange-300 mb-6 text-center">Bizi Takip Edin</h3>
+                    <ul class="social-icons-list">
+                        <li>
+                            <a href="https://facebook.com/yourphotopage" target="_blank" rel="noopener noreferrer"
+                                aria-label="Facebook Sayfamız">
+                                <i class="fab fa-facebook-f icon"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/yourphotopage" target="_blank" rel="noopener noreferrer"
+                                aria-label="Twitter Hesabımız">
+                                <i class="fab fa-twitter icon"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://linkedin.com/company/yourphotopage" target="_blank"
+                                rel="noopener noreferrer" aria-label="LinkedIn Profilimiz">
+                                <i class="fab fa-linkedin-in icon"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:info@yourphotopage.com" aria-label="E-posta ile İletişim">
+                                <i class="fas fa-envelope icon"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>© 2025 Photo. Tüm Hakları Saklıdır.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Animasyonlu Yıldız JavaScript'i ---
+            const starsContainer = document.getElementById('starsContainer');
+            const numberOfStars = 150;
+
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+
+                const sizeType = Math.random();
+                if (sizeType < 0.3) {
+                    star.classList.add('star-small');
+                } else if (sizeType < 0.7) {
+                    star.classList.add('star-medium');
+                } else {
+                    star.classList.add('star-large');
+                }
+
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                star.style.left = `${left}%`;
+                star.style.top = `${top}%`;
+
+                const delay = Math.random() * 6;
+                star.style.setProperty('--delay', `${delay}s`);
+
+                starsContainer.appendChild(star);
+            }
+
+            // --- Navbar ve Bölüm Geçişleri JavaScript'i ---
+            const navbar = document.getElementById('navbar');
+            const desktopNavLinks = document.querySelectorAll('.nav-link');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+            const allNavLinks = [...desktopNavLinks, ...mobileNavLinks];
+            const sections = document.querySelectorAll('.section');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            const getNavbarHeight = () => navbar.offsetHeight;
+
+            const setActiveLink = () => {
+                let currentSectionId = '';
+                const navbarHeight = getNavbarHeight();
+
+                // Sayfanın en üstündeysen ilk bölümü aktif yap
+                if (window.scrollY < (sections.length > 0 ? sections[0].offsetTop - navbarHeight - 10 : 0)) {
+                    currentSectionId = sections.length > 0 ? sections[0].id : '';
+                } else {
+                    for (let i = sections.length - 1; i >= 0; i--) {
+                        const section = sections[i];
+                        const sectionTop = section.offsetTop - navbarHeight - 5; // Navbar altı için tolerans
+                        const sectionBottom = sectionTop + section.offsetHeight;
+
+                        if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
+                            currentSectionId = section.id;
+                            break;
+                        }
+                    }
+                }
+
+                allNavLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${currentSectionId}`) {
+                        link.classList.add('active');
+                    }
+                });
+            };
+
+            // Navbar linklerine tıklama olayı
+            allNavLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    const navbarHeight = getNavbarHeight();
+
+                    if (targetSection) {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - navbarHeight,
+                            behavior: 'smooth'
+                        });
+                    }
+
+                    // Tıklanan linki hemen aktif yap
+                    allNavLinks.forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+
+                    // Mobil menüyü kapat
+                    if (mobileMenu.classList.contains('h-auto')) { // Menü açıksa
+                        mobileMenu.classList.remove('h-auto');
+                        mobileMenu.classList.add('h-0');
+                        mobileMenuButton.classList.remove('active'); // Hamburger ikonunu kapat
+                    }
+                });
+            });
+
+            // Mobil menü açma/kapama butonu
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('h-0');
+                mobileMenu.classList.toggle('h-auto'); // h-auto, içeriğe göre yüksekliği ayarlar
+                mobileMenuButton.classList.toggle('active'); // Hamburger ikon animasyonunu tetikle
+            });
+
+            // Sayfa kaydırma (scroll) olayı
+            window.addEventListener('scroll', setActiveLink);
+
+            // Sayfa yüklendiğinde ve boyut değiştiğinde aktif linki belirle
+            setActiveLink();
+            window.addEventListener('resize', setActiveLink);
+
+            // --- Hakkımızda Metin Rotator JavaScript'i ---
+            const aboutTextRotatorElement = document.getElementById('about-text-rotator');
+            const aboutTexts = [
+                "Düğün Fotoğrafçılığı",
+                "Profesyonel Editörlük",
+                "Özgün Dış Çekim",
+                "Ürün Fotoğrafçılığı",
+                "Etkinlik Fotoğrafçılığı",
+                "Kurumsal Çekimler",
+                "Portre Çekimleri",
+                "Video Prodüksiyonu"
+            ];
+            let aboutTextIndex = 0;
+            let aboutCharIndex = 0;
+            let aboutIsDeleting = false;
+            const aboutTypingSpeed = 80; // Yazma hızı (ms)
+            const aboutDeletingSpeed = 50; // Silme hızı (ms)
+            const aboutDelayBeforeDelete = 1500; // Silmeden önce bekleme süresi (ms)
+            const aboutDelayBeforeType = 700; // Yazmadan önce bekleme süresi (ms)
+
+            function typeWriterForAbout() {
+                const currentText = aboutTexts[aboutTextIndex];
+                if (aboutIsDeleting) {
+                    aboutTextRotatorElement.textContent = currentText.substring(0, aboutCharIndex - 1);
+                    aboutCharIndex--;
+                } else {
+                    aboutTextRotatorElement.textContent = currentText.substring(0, aboutCharIndex + 1);
+                    aboutCharIndex++;
+                }
+
+                let speed = aboutIsDeleting ? aboutDeletingSpeed : aboutTypingSpeed;
+
+                if (!aboutIsDeleting && aboutCharIndex === currentText.length) {
+                    speed = aboutDelayBeforeDelete;
+                    aboutIsDeleting = true;
+                } else if (aboutIsDeleting && aboutCharIndex === 0) {
+                    aboutIsDeleting = false;
+                    aboutTextIndex = (aboutTextIndex + 1) % aboutTexts.length;
+                    speed = aboutDelayBeforeType;
+                }
+
+                setTimeout(typeWriterForAbout, speed);
+            }
+
+            // Hakkımızda metin rotator'ı başlat
+            // typeWriterForAbout(); // Intersection Observer ile kontrol edildiği için doğrudan burada başlatmaya gerek yok.
+
+            // Intersection Observer ile "Hakkımızda" bölümü göründüğünde animasyonu başlatma
+            const aboutSection = document.getElementById('about');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Hakkımızda bölümü görünür olduğunda animasyonu başlat/sıfırla
+                        if (!aboutTextRotatorElement.dataset.started) {
+                            typeWriterForAbout();
+                            aboutTextRotatorElement.dataset.started = 'true';
+                        }
+                    } else {
+                        // İsteğe bağlı: Bölümden çıkıldığında animasyonu durdur/sıfırla
+                        // aboutTextRotatorElement.dataset.started = '';
+                        // aboutCharIndex = 0;
+                        // aboutIsDeleting = false;
+                        // aboutTextRotatorElement.textContent = '';
+                    }
+                });
+            }, { threshold: 0.5 }); // Bölümün %50'si göründüğünde tetikle
+
+            observer.observe(aboutSection);
+        });
+    </script>
+
+</body>
+
+</html>
