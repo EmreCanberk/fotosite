@@ -17,13 +17,13 @@
             /* 3D dönüşüm için perspektif */
             position: relative;
             width: 300px;
-            /* Kart genişliği */
+           
             height: 400px;
-            /* Kart yüksekliği */
+          
             margin: 20px;
-            /* Kartlar arasında boşluk */
+            
             display: inline-block;
-            /* Kartları yan yana dizmek için */
+           
         }
 
         .file .work-5,
@@ -31,13 +31,13 @@
         .file .work-3,
         .file .work-2,
         .file .work-1 {
-            /* Tüm work katmanları için genel geçişler */
+  
             transform-style: preserve-3d;
             backface-visibility: hidden;
         }
 
-        /* BURADAKİ TRANSFORM KISIMLARI DEĞİŞTİ */
-        /* Dosya, öne doğru açılıyormuş gibi görünecek */
+        
+        
         .file .work-4 {
             transform-origin: bottom;
             /* Dönüşüm alt kısımdan başlar */
@@ -55,7 +55,7 @@
             transform-origin: bottom;
             transform: rotateX(0deg);
             transition: transform 0.3s ease 0.05s;
-            /* Hafif gecikme */
+         
         }
 
         .file:hover .work-3 {
@@ -87,7 +87,7 @@
             /* Hafif gölgeler */
         }
 
-        /* work-1 Katmanı - Özel Arka Plan Görselleri (BURAYI KENDİ GÖRSELLERİNLE DEĞİŞTİRMELİSİN!) */
+        
 
         /* Düğün Fotoğrafçılığı Kartı */
         .file a[href="/portfolio/dugun.html"] .work-1 {
@@ -98,10 +98,9 @@
             background-repeat: no-repeat;
         }
 
-        /* Mezuniyet Çekimleri Kartı */
         .file a[href="/portfolio/mezuniyet.html"] .work-1 {
             background-image: url('https://via.placeholder.com/600x400/4682B4/FFFFFF?text=Mezuniyet+Çekimleri');
-            /* Örnek: Kendi Mezuniyet fotoğrafının yolunu buraya yaz! */
+           
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -123,10 +122,10 @@
         }
 
 
-        /* Ürün Fotoğrafçılığı Kartı */
+      
         .file a[href="/portfolio/urun-fotografciligi.html"] .work-1 {
             background-image: url('https://via.placeholder.com/600x400/32CD32/FFFFFF?text=Ürün+Fotoğrafçılığı');
-            /* Örnek: Kendi Ürün fotoğrafının yolunu buraya yaz! */
+       
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -151,7 +150,7 @@
         /* Etkinlik & Konser Kartı */
         .file a[href="/portfolio/etkinlik-konser.html"] .work-1 {
             background-image: url('https://via.placeholder.com/600x400/8A2BE2/FFFFFF?text=Etkinlik+Konser');
-            /* Örnek: Kendi Etkinlik fotoğrafının yolunu buraya yaz! */
+           
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -173,7 +172,7 @@
         }
 
 
-        /* Z-index ve Dönüş Noktaları - Bunları değiştirmene gerek yok */
+      
         .file .work-5 {
             z-index: 5;
         }
@@ -195,13 +194,12 @@
         }
 
 
-
-        /* Genel Body Stilleri */
+/
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding-top: 80px;
-            /* Navbar'ın sabit olması için boşluk bırakıldı */
+          
             background: linear-gradient(135deg, #372902, #1C140F);
             /* Derin, sıcak tonlu degrade */
             color: #f5f5f5;
@@ -211,10 +209,10 @@
             position: relative;
         }
 
-        /* --- Animasyonlu Yıldız Efekti (Turuncu Tonlarında) --- */
+        /* --- Animasyonlu Yıldız Efekti--- */
         .stars-container {
             position: fixed;
-            /* Yıldızları da sabit yapalım ki scroll ile hareket etmesin */
+           
             top: 0;
             left: 0;
             width: 100%;
@@ -222,7 +220,7 @@
             pointer-events: none;
             overflow: hidden;
             z-index: -1;
-            /* İçeriğin ve navbar'ın arkasında kalsın */
+           
         }
 
         .star {
@@ -294,7 +292,7 @@
             }
         }
 
-        /* --- Navbar Özel Stilleri (Turuncu Temalı) --- */
+      
         .bg-gray-900\/70 {
             background-color: rgba(26, 18, 11, 0.7);
             /* Koyu, sıcak tonlu şeffaf */
@@ -349,7 +347,7 @@
         .nav-link {
             color: #e0e0e0;
             padding: 8px 16px;
-            /* Buton gibi durması için padding eklendi */
+        
             border-radius: 0.375rem;
             transition: all 0.2s ease-in-out;
         }
@@ -377,7 +375,7 @@
             transition: width 0.3s ease-in-out;
         }
 
-        /* Contact Button renkleri */
+        
         .contact-btn {
             background: linear-gradient(to right, rgba(245, 124, 0, 0.9), rgba(230, 81, 0, 0.9));
             border-radius: 0.5rem;
@@ -437,7 +435,7 @@
             background: linear-gradient(to right, #FF8F00, #FF7043);
         }
 
-        /* --- Bölüm Stilleri (Turuncu Vurgular) --- */
+      
         .section {
             padding: 80px 20px;
             min-height: 70vh;
@@ -504,21 +502,21 @@
         }
 
 
-        /* --- Animasyonlu Logo Kutusu Stilleri (Şimdi Anasayfada Sağ Altta) --- */
+     
         .animated-logo-container {
             --itemWidth: min(150px, 20vw);
-            /* Daha küçük logo boyutu, mobil uyumlu */
+           
             --itemWidthMinus: calc(-1 * var(--itemWidth));
             height: max-content;
             width: max-content;
             position: absolute;
-            /* Anasayfa içine göre konumlandır */
+          
             bottom: 20px;
-            /* Alttan boşluk */
+        
             right: 30px;
-            /* Sağdan boşluk */
+
             z-index: 10;
-            /* Diğer içeriklerin üstünde kalsın */
+           
         }
 
         .animated-logo-item {
@@ -532,7 +530,7 @@
                 inset var(--itemWidth) var(--itemWidth) 0 #FFD54F,
                 /* Sarımsı Turuncu */
                 0 0 10px rgba(255, 160, 0, 0.6);
-            /* Daha az belirgin turuncu gölge */
+       
             transition: box-shadow ease-in-out .6s, color ease-in-out .5s;
             width: var(--itemWidth);
             height: var(--itemWidth);
@@ -543,18 +541,18 @@
             display: grid;
             color: white;
             font-size: calc(var(--itemWidth) / 6);
-            /* Yazı boyutu da küçültülen logoya göre ayarlandı */
+          
             grid-row: 1 / 2;
             grid-column: 1 / 2;
             place-self: center;
             background-image: url('https://via.placeholder.com/100/FFD54F/000000?text=P');
-            /* Photo'nun P logosu - KENDİ LOGO URL'NİZİ BURAYA KOYUN */
+          
             background-size: 60%;
-            /* Logo ikonu biraz daha büyük */
+           
             background-repeat: no-repeat;
             background-position: center;
             border: 1px solid #FFD54F;
-            /* Daha ince kenarlık */
+            
             display: flex;
             align-items: center;
             justify-content: center;
@@ -567,7 +565,7 @@
                 inset 0 0 0 transparent,
                 inset 0 0 0 transparent,
                 0 0 10px rgba(255, 213, 79, 0.8);
-            /* Hoverda daha parlak ama hala zarif turuncu gölge */
+           
             color: transparent;
         }
 
@@ -577,15 +575,15 @@
             -moz-user-select: none;
             -webkit-user-select: none;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
-            /* Daha az belirgin metin gölgesi */
+           
             color: #FFD54F;
             font-weight: bold;
             letter-spacing: 0.5px;
-            /* Daha az harf aralığı */
+       
         }
 
 
-        /* Hakkımızda bölümü için metin rotator stili */
+      
         #about,
         #references,
         #portfolio,
